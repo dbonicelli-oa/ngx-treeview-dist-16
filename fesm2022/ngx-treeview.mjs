@@ -205,6 +205,7 @@ class TreeviewItem {
     internalDisabled = false;
     internalChecked = true;
     internalCollapsed = false;
+    internalHidden = false;
     internalChildren;
     text;
     value;
@@ -228,6 +229,9 @@ class TreeviewItem {
         if (isBoolean(item.disabled)) {
             this.disabled = item.disabled;
         }
+        if (isBoolean(item.hidden)) {
+            this.hidden = item.hidden;
+        }
         if (!isNil(item.children) && item.children.length > 0) {
             this.children = item.children.map(child => {
                 if (this.disabled === true) {
@@ -247,6 +251,16 @@ class TreeviewItem {
         if (!this.internalDisabled) {
             if (this.internalChecked !== value) {
                 this.internalChecked = value;
+            }
+        }
+    }
+    get hidden() {
+        return this.internalHidden;
+    }
+    set hidden(value) {
+        if (!this.internalHidden) {
+            if (this.internalHidden !== value) {
+                this.internalHidden = value;
             }
         }
     }
@@ -407,6 +421,7 @@ class TreeviewConfig {
     hasFilter = false;
     hasCollapseExpand = false;
     decoupleChildFromParent = false;
+    filterHidden = false;
     maxHeight = 500;
     get hasDivider() {
         return this.hasFilter || this.hasAllCheckBox || this.hasCollapseExpand;
@@ -664,67 +679,85 @@ function TreeviewComponent_ng_template_0_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵadvance(2);
     i0.ɵɵtextInterpolate1(" ", item_r7.text, " ");
 } }
-function TreeviewComponent_ng_template_2_div_0_Template(rf, ctx) { if (rf & 1) {
-    const _r29 = i0.ɵɵgetCurrentView();
-    i0.ɵɵelementStart(0, "div", 21)(1, "div", 22)(2, "input", 23);
-    i0.ɵɵlistener("ngModelChange", function TreeviewComponent_ng_template_2_div_0_Template_input_ngModelChange_2_listener($event) { i0.ɵɵrestoreView(_r29); const ctx_r28 = i0.ɵɵnextContext(2); return i0.ɵɵresetView(ctx_r28.filterText = $event); })("ngModelChange", function TreeviewComponent_ng_template_2_div_0_Template_input_ngModelChange_2_listener($event) { i0.ɵɵrestoreView(_r29); const onFilterTextChange_r25 = i0.ɵɵnextContext().onFilterTextChange; return i0.ɵɵresetView(onFilterTextChange_r25($event)); });
-    i0.ɵɵelementEnd()()();
+function TreeviewComponent_ng_template_2_div_0_div_3_Template(rf, ctx) { if (rf & 1) {
+    const _r31 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "div", 25)(1, "input", 26);
+    i0.ɵɵlistener("ngModelChange", function TreeviewComponent_ng_template_2_div_0_div_3_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r31); const ctx_r30 = i0.ɵɵnextContext(3); return i0.ɵɵresetView(ctx_r30.showHidden = $event); })("ngModelChange", function TreeviewComponent_ng_template_2_div_0_div_3_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r31); const onFilterShowHiddenChange_r26 = i0.ɵɵnextContext(2).onFilterShowHiddenChange; return i0.ɵɵresetView(onFilterShowHiddenChange_r26($event)); });
+    i0.ɵɵelementEnd();
+    i0.ɵɵelementStart(2, "label", 27);
+    i0.ɵɵtext(3, "Show Hidden");
+    i0.ɵɵelementEnd()();
 } if (rf & 2) {
-    const ctx_r26 = i0.ɵɵnextContext(2);
+    const ctx_r29 = i0.ɵɵnextContext(3);
+    i0.ɵɵadvance(1);
+    i0.ɵɵproperty("ngModel", ctx_r29.showHidden);
+} }
+function TreeviewComponent_ng_template_2_div_0_Template(rf, ctx) { if (rf & 1) {
+    const _r35 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "div", 21)(1, "div", 22)(2, "input", 23);
+    i0.ɵɵlistener("ngModelChange", function TreeviewComponent_ng_template_2_div_0_Template_input_ngModelChange_2_listener($event) { i0.ɵɵrestoreView(_r35); const ctx_r34 = i0.ɵɵnextContext(2); return i0.ɵɵresetView(ctx_r34.filterText = $event); })("ngModelChange", function TreeviewComponent_ng_template_2_div_0_Template_input_ngModelChange_2_listener($event) { i0.ɵɵrestoreView(_r35); const onFilterTextChange_r25 = i0.ɵɵnextContext().onFilterTextChange; return i0.ɵɵresetView(onFilterTextChange_r25($event)); });
+    i0.ɵɵelementEnd()();
+    i0.ɵɵtemplate(3, TreeviewComponent_ng_template_2_div_0_div_3_Template, 4, 1, "div", 24);
+    i0.ɵɵelementEnd();
+} if (rf & 2) {
+    const config_r21 = i0.ɵɵnextContext().config;
+    const ctx_r27 = i0.ɵɵnextContext();
     i0.ɵɵadvance(2);
-    i0.ɵɵproperty("placeholder", ctx_r26.i18n.getFilterPlaceholder())("ngModel", ctx_r26.filterText);
+    i0.ɵɵproperty("placeholder", ctx_r27.i18n.getFilterPlaceholder())("ngModel", ctx_r27.filterText);
+    i0.ɵɵadvance(1);
+    i0.ɵɵproperty("ngIf", config_r21.filterHidden);
 } }
 function TreeviewComponent_ng_template_2_div_1_div_1_div_2_Template(rf, ctx) { if (rf & 1) {
-    const _r38 = i0.ɵɵgetCurrentView();
-    i0.ɵɵelementStart(0, "div", 29)(1, "input", 30);
-    i0.ɵɵlistener("ngModelChange", function TreeviewComponent_ng_template_2_div_1_div_1_div_2_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r38); const item_r22 = i0.ɵɵnextContext(3).item; return i0.ɵɵresetView(item_r22.checked = $event); })("ngModelChange", function TreeviewComponent_ng_template_2_div_1_div_1_div_2_Template_input_ngModelChange_1_listener() { i0.ɵɵrestoreView(_r38); const onCheckedChange_r24 = i0.ɵɵnextContext(3).onCheckedChange; return i0.ɵɵresetView(onCheckedChange_r24()); });
+    const _r45 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "div", 33)(1, "input", 34);
+    i0.ɵɵlistener("ngModelChange", function TreeviewComponent_ng_template_2_div_1_div_1_div_2_Template_input_ngModelChange_1_listener($event) { i0.ɵɵrestoreView(_r45); const item_r22 = i0.ɵɵnextContext(3).item; return i0.ɵɵresetView(item_r22.checked = $event); })("ngModelChange", function TreeviewComponent_ng_template_2_div_1_div_1_div_2_Template_input_ngModelChange_1_listener() { i0.ɵɵrestoreView(_r45); const onCheckedChange_r24 = i0.ɵɵnextContext(3).onCheckedChange; return i0.ɵɵresetView(onCheckedChange_r24()); });
     i0.ɵɵelementEnd();
     i0.ɵɵelementStart(2, "label", 11);
-    i0.ɵɵlistener("click", function TreeviewComponent_ng_template_2_div_1_div_1_div_2_Template_label_click_2_listener() { i0.ɵɵrestoreView(_r38); const ctx_r42 = i0.ɵɵnextContext(3); const item_r22 = ctx_r42.item; const onCheckedChange_r24 = ctx_r42.onCheckedChange; item_r22.checked = !item_r22.checked; return i0.ɵɵresetView(onCheckedChange_r24()); });
+    i0.ɵɵlistener("click", function TreeviewComponent_ng_template_2_div_1_div_1_div_2_Template_label_click_2_listener() { i0.ɵɵrestoreView(_r45); const ctx_r49 = i0.ɵɵnextContext(3); const item_r22 = ctx_r49.item; const onCheckedChange_r24 = ctx_r49.onCheckedChange; item_r22.checked = !item_r22.checked; return i0.ɵɵresetView(onCheckedChange_r24()); });
     i0.ɵɵtext(3);
     i0.ɵɵelementEnd()();
 } if (rf & 2) {
     const item_r22 = i0.ɵɵnextContext(3).item;
-    const ctx_r34 = i0.ɵɵnextContext();
+    const ctx_r41 = i0.ɵɵnextContext();
     i0.ɵɵadvance(1);
     i0.ɵɵproperty("ngModel", item_r22.checked)("indeterminate", item_r22.indeterminate);
     i0.ɵɵadvance(2);
-    i0.ɵɵtextInterpolate1(" ", ctx_r34.i18n.getAllCheckboxText(), " ");
+    i0.ɵɵtextInterpolate1(" ", ctx_r41.i18n.getAllCheckboxText(), " ");
 } }
 function TreeviewComponent_ng_template_2_div_1_div_1_label_3__svg_svg_2_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵnamespaceSVG();
-    i0.ɵɵelementStart(0, "svg", 35);
-    i0.ɵɵelement(1, "path", 36)(2, "path", 37)(3, "path", 38);
-    i0.ɵɵelementEnd();
-} }
-function TreeviewComponent_ng_template_2_div_1_div_1_label_3__svg_svg_3_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵnamespaceSVG();
     i0.ɵɵelementStart(0, "svg", 39);
     i0.ɵɵelement(1, "path", 40)(2, "path", 41)(3, "path", 42);
     i0.ɵɵelementEnd();
 } }
+function TreeviewComponent_ng_template_2_div_1_div_1_label_3__svg_svg_3_Template(rf, ctx) { if (rf & 1) {
+    i0.ɵɵnamespaceSVG();
+    i0.ɵɵelementStart(0, "svg", 43);
+    i0.ɵɵelement(1, "path", 44)(2, "path", 45)(3, "path", 46);
+    i0.ɵɵelementEnd();
+} }
 function TreeviewComponent_ng_template_2_div_1_div_1_label_3_Template(rf, ctx) { if (rf & 1) {
-    const _r48 = i0.ɵɵgetCurrentView();
-    i0.ɵɵelementStart(0, "label", 31);
-    i0.ɵɵlistener("click", function TreeviewComponent_ng_template_2_div_1_div_1_label_3_Template_label_click_0_listener() { i0.ɵɵrestoreView(_r48); const onCollapseExpand_r23 = i0.ɵɵnextContext(3).onCollapseExpand; return i0.ɵɵresetView(onCollapseExpand_r23()); });
-    i0.ɵɵelementStart(1, "i", 32);
-    i0.ɵɵtemplate(2, TreeviewComponent_ng_template_2_div_1_div_1_label_3__svg_svg_2_Template, 4, 0, "svg", 33);
-    i0.ɵɵtemplate(3, TreeviewComponent_ng_template_2_div_1_div_1_label_3__svg_svg_3_Template, 4, 0, "svg", 34);
+    const _r55 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "label", 35);
+    i0.ɵɵlistener("click", function TreeviewComponent_ng_template_2_div_1_div_1_label_3_Template_label_click_0_listener() { i0.ɵɵrestoreView(_r55); const onCollapseExpand_r23 = i0.ɵɵnextContext(3).onCollapseExpand; return i0.ɵɵresetView(onCollapseExpand_r23()); });
+    i0.ɵɵelementStart(1, "i", 36);
+    i0.ɵɵtemplate(2, TreeviewComponent_ng_template_2_div_1_div_1_label_3__svg_svg_2_Template, 4, 0, "svg", 37);
+    i0.ɵɵtemplate(3, TreeviewComponent_ng_template_2_div_1_div_1_label_3__svg_svg_3_Template, 4, 0, "svg", 38);
     i0.ɵɵelementEnd()();
 } if (rf & 2) {
     const item_r22 = i0.ɵɵnextContext(3).item;
-    const ctx_r35 = i0.ɵɵnextContext();
+    const ctx_r42 = i0.ɵɵnextContext();
     i0.ɵɵadvance(1);
-    i0.ɵɵproperty("title", ctx_r35.i18n.getTooltipCollapseExpandText(item_r22.collapsed))("ngSwitch", item_r22.collapsed);
+    i0.ɵɵproperty("title", ctx_r42.i18n.getTooltipCollapseExpandText(item_r22.collapsed))("ngSwitch", item_r22.collapsed);
     i0.ɵɵadvance(1);
     i0.ɵɵproperty("ngSwitchCase", true);
     i0.ɵɵadvance(1);
     i0.ɵɵproperty("ngSwitchCase", false);
 } }
 function TreeviewComponent_ng_template_2_div_1_div_1_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "div", 26)(1, "div", 22);
-    i0.ɵɵtemplate(2, TreeviewComponent_ng_template_2_div_1_div_1_div_2_Template, 4, 3, "div", 27);
-    i0.ɵɵtemplate(3, TreeviewComponent_ng_template_2_div_1_div_1_label_3_Template, 4, 4, "label", 28);
+    i0.ɵɵelementStart(0, "div", 30)(1, "div", 22);
+    i0.ɵɵtemplate(2, TreeviewComponent_ng_template_2_div_1_div_1_div_2_Template, 4, 3, "div", 31);
+    i0.ɵɵtemplate(3, TreeviewComponent_ng_template_2_div_1_div_1_label_3_Template, 4, 4, "label", 32);
     i0.ɵɵelementEnd()();
 } if (rf & 2) {
     const config_r21 = i0.ɵɵnextContext(2).config;
@@ -734,12 +767,12 @@ function TreeviewComponent_ng_template_2_div_1_div_1_Template(rf, ctx) { if (rf 
     i0.ɵɵproperty("ngIf", config_r21.hasCollapseExpand);
 } }
 function TreeviewComponent_ng_template_2_div_1_div_2_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelement(0, "div", 43);
+    i0.ɵɵelement(0, "div", 47);
 } }
 function TreeviewComponent_ng_template_2_div_1_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵelementStart(0, "div");
-    i0.ɵɵtemplate(1, TreeviewComponent_ng_template_2_div_1_div_1_Template, 4, 2, "div", 24);
-    i0.ɵɵtemplate(2, TreeviewComponent_ng_template_2_div_1_div_2_Template, 1, 0, "div", 25);
+    i0.ɵɵtemplate(1, TreeviewComponent_ng_template_2_div_1_div_1_Template, 4, 2, "div", 28);
+    i0.ɵɵtemplate(2, TreeviewComponent_ng_template_2_div_1_div_2_Template, 1, 0, "div", 29);
     i0.ɵɵelementEnd();
 } if (rf & 2) {
     const config_r21 = i0.ɵɵnextContext().config;
@@ -749,7 +782,7 @@ function TreeviewComponent_ng_template_2_div_1_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵproperty("ngIf", config_r21.hasDivider);
 } }
 function TreeviewComponent_ng_template_2_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵtemplate(0, TreeviewComponent_ng_template_2_div_0_Template, 3, 2, "div", 19);
+    i0.ɵɵtemplate(0, TreeviewComponent_ng_template_2_div_0_Template, 4, 3, "div", 19);
     i0.ɵɵtemplate(1, TreeviewComponent_ng_template_2_div_1_Template, 3, 2, "div", 20);
 } if (rf & 2) {
     const config_r21 = ctx.config;
@@ -760,19 +793,19 @@ function TreeviewComponent_ng_template_2_Template(rf, ctx) { if (rf & 1) {
 } }
 function TreeviewComponent_ng_template_5_Template(rf, ctx) { }
 function TreeviewComponent_div_7_ngx_treeview_item_1_Template(rf, ctx) { if (rf & 1) {
-    const _r55 = i0.ɵɵgetCurrentView();
-    i0.ɵɵelementStart(0, "ngx-treeview-item", 46);
-    i0.ɵɵlistener("checkedChange", function TreeviewComponent_div_7_ngx_treeview_item_1_Template_ngx_treeview_item_checkedChange_0_listener($event) { const restoredCtx = i0.ɵɵrestoreView(_r55); const item_r53 = restoredCtx.$implicit; const ctx_r54 = i0.ɵɵnextContext(2); return i0.ɵɵresetView(ctx_r54.onItemCheckedChange(item_r53, $event)); });
+    const _r62 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "ngx-treeview-item", 50);
+    i0.ɵɵlistener("checkedChange", function TreeviewComponent_div_7_ngx_treeview_item_1_Template_ngx_treeview_item_checkedChange_0_listener($event) { const restoredCtx = i0.ɵɵrestoreView(_r62); const item_r60 = restoredCtx.$implicit; const ctx_r61 = i0.ɵɵnextContext(2); return i0.ɵɵresetView(ctx_r61.onItemCheckedChange(item_r60, $event)); });
     i0.ɵɵelementEnd();
 } if (rf & 2) {
-    const item_r53 = ctx.$implicit;
-    const ctx_r52 = i0.ɵɵnextContext(2);
+    const item_r60 = ctx.$implicit;
+    const ctx_r59 = i0.ɵɵnextContext(2);
     const _r0 = i0.ɵɵreference(1);
-    i0.ɵɵproperty("config", ctx_r52.config)("item", item_r53)("template", ctx_r52.itemTemplate || _r0);
+    i0.ɵɵproperty("config", ctx_r59.config)("item", item_r60)("template", ctx_r59.itemTemplate || _r0);
 } }
 function TreeviewComponent_div_7_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "div", 44);
-    i0.ɵɵtemplate(1, TreeviewComponent_div_7_ngx_treeview_item_1_Template, 1, 3, "ngx-treeview-item", 45);
+    i0.ɵɵelementStart(0, "div", 48);
+    i0.ɵɵtemplate(1, TreeviewComponent_div_7_ngx_treeview_item_1_Template, 1, 3, "ngx-treeview-item", 49);
     i0.ɵɵelementEnd();
 } if (rf & 2) {
     const ctx_r5 = i0.ɵɵnextContext();
@@ -781,7 +814,7 @@ function TreeviewComponent_div_7_Template(rf, ctx) { if (rf & 1) {
     i0.ɵɵproperty("ngForOf", ctx_r5.filterItems);
 } }
 function TreeviewComponent_div_8_Template(rf, ctx) { if (rf & 1) {
-    i0.ɵɵelementStart(0, "div", 47);
+    i0.ɵɵelementStart(0, "div", 51);
     i0.ɵɵtext(1);
     i0.ɵɵelementEnd();
 } if (rf & 2) {
@@ -797,6 +830,7 @@ class FilterTreeviewItem extends TreeviewItem {
             value: item.value,
             disabled: item.disabled,
             checked: item.checked,
+            hidden: item.hidden,
             collapsed: item.collapsed,
             children: item.children
         });
@@ -833,6 +867,7 @@ class TreeviewComponent {
     headerTemplateContext;
     allItem;
     filterText = '';
+    showHidden = false;
     filterItems;
     selection;
     constructor(i18n, defaultConfig, eventParser) {
@@ -869,6 +904,12 @@ class TreeviewComponent {
         this.filterChange.emit(text);
         this.updateFilterItems();
     }
+    onFilterShowHiddenChange(showHidden) {
+        this.showHidden = showHidden;
+        this.filterChange.emit(`${showHidden}`);
+        this.filterText = '';
+        this.updateFilterItems();
+    }
     onAllCheckedChange() {
         const checked = this.allItem.checked;
         this.filterItems.forEach(item => {
@@ -899,7 +940,8 @@ class TreeviewComponent {
             item: this.allItem,
             onCheckedChange: () => this.onAllCheckedChange(),
             onCollapseExpand: () => this.onAllCollapseExpand(),
-            onFilterTextChange: (text) => this.onFilterTextChange(text)
+            onFilterTextChange: (text) => this.onFilterTextChange(text),
+            onFilterShowHiddenChange: (showHidden) => this.onFilterShowHiddenChange(showHidden)
         };
     }
     generateSelection() {
@@ -922,23 +964,79 @@ class TreeviewComponent {
             this.items.forEach(item => {
                 const newItem = this.filterItem(item, filterText);
                 if (!isNil(newItem)) {
-                    filterItems.push(newItem);
+                    if (this.config.filterHidden) {
+                        const filteredHiddenItem = this.filterItemHidden(newItem, this.showHidden);
+                        if (!isNil(filteredHiddenItem)) {
+                            filterItems.push(filteredHiddenItem);
+                        }
+                    }
+                    else {
+                        filterItems.push(newItem);
+                    }
                 }
             });
             this.filterItems = filterItems;
         }
         else {
-            this.filterItems = this.items;
+            const filterItems = [];
+            this.items.forEach(item => {
+                const newItem = this.filterItemHidden(item, this.showHidden);
+                if (!isNil(newItem)) {
+                    filterItems.push(newItem);
+                }
+            });
+            this.filterItems = filterItems;
         }
         this.updateCheckedOfAll();
     }
+    filterItemHidden(item, showHidden) {
+        if (!showHidden && this.config.filterHidden) {
+            if (item.hidden) {
+                return undefined;
+            }
+            else {
+                if (!isNil(item.children)) {
+                    const children = [];
+                    item.children.forEach(child => {
+                        const newChild = this.filterItemHidden(child, showHidden);
+                        if (!isNil(newChild)) {
+                            children.push(newChild);
+                        }
+                    });
+                    if (children.length > 0) {
+                        const newItem = new FilterTreeviewItem(item);
+                        newItem.collapsed = false;
+                        newItem.children = children;
+                        return newItem;
+                    }
+                    else {
+                        const newItem = new FilterTreeviewItem(new TreeviewItem({
+                            text: item.text,
+                            value: item.value,
+                            disabled: item.disabled,
+                            checked: item.checked,
+                            hidden: item.hidden,
+                            collapsed: item.collapsed,
+                            children: []
+                        }));
+                        newItem.collapsed = false;
+                        return newItem;
+                    }
+                }
+            }
+        }
+        else {
+            return item;
+        }
+        return item;
+    }
     filterItem(item, filterText) {
         const isMatch = includes(item.text.toLowerCase(), filterText);
-        if (isMatch) {
+        if (isMatch && (this.showHidden || (!this.showHidden && !item.hidden))) {
             return item;
         }
         else {
-            if (!isNil(item.children)) {
+            if (!isNil(item.children) && ((!this.showHidden && !item.hidden) || this.showHidden)) {
                 const children = [];
                 item.children.forEach(child => {
                     const newChild = this.filterItem(child, filterText);
@@ -983,7 +1081,7 @@ class TreeviewComponent {
         this.allItem.collapsed = !hasItemExpanded;
     }
     static ɵfac = function TreeviewComponent_Factory(t) { return new (t || TreeviewComponent)(i0.ɵɵdirectiveInject(TreeviewI18n), i0.ɵɵdirectiveInject(TreeviewConfig), i0.ɵɵdirectiveInject(TreeviewEventParser)); };
-    static ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: TreeviewComponent, selectors: [["ngx-treeview"]], inputs: { headerTemplate: "headerTemplate", itemTemplate: "itemTemplate", items: "items", config: "config" }, outputs: { selectedChange: "selectedChange", filterChange: "filterChange" }, features: [i0.ɵɵNgOnChangesFeature], decls: 9, vars: 5, consts: [["defaultItemTemplate", ""], ["defaultHeaderTemplate", ""], [1, "treeview-header"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"], [3, "ngSwitch"], ["class", "treeview-container", 3, "max-height", 4, "ngSwitchCase"], ["class", "treeview-text", 4, "ngSwitchCase"], [1, "form-inline", "row-item"], ["aria-hidden", "true", 3, "ngSwitch", "click", 4, "ngIf"], [1, "form-check"], ["type", "checkbox", 1, "form-check-input", 3, "ngModel", "disabled", "indeterminate", "ngModelChange"], [1, "form-check-label", 3, "click"], ["aria-hidden", "true", 3, "ngSwitch", "click"], ["width", "0.8rem", "height", "0.8rem", "viewBox", "0 0 16 16", "class", "bi bi-caret-right-fill", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 4, "ngSwitchCase"], ["width", "0.8rem", "height", "0.8rem", "viewBox", "0 0 16 16", "class", "bi bi-caret-down-fill", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 4, "ngSwitchCase"], ["width", "0.8rem", "height", "0.8rem", "viewBox", "0 0 16 16", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 1, "bi", "bi-caret-right-fill"], ["d", "M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"], ["width", "0.8rem", "height", "0.8rem", "viewBox", "0 0 16 16", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 1, "bi", "bi-caret-down-fill"], ["d", "M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"], ["class", "row row-filter", 4, "ngIf"], [4, "ngIf"], [1, "row", "row-filter"], [1, "col-12"], ["type", "text", 1, "form-control", 3, "placeholder", "ngModel", "ngModelChange"], ["class", "row row-all", 4, "ngIf"], ["class", "dropdown-divider", 4, "ngIf"], [1, "row", "row-all"], ["class", "form-check form-check-inline", 4, "ngIf"], ["class", "float-right form-check-label", 3, "click", 4, "ngIf"], [1, "form-check", "form-check-inline"], ["type", "checkbox", 1, "form-check-input", 3, "ngModel", "indeterminate", "ngModelChange"], [1, "float-right", "form-check-label", 3, "click"], ["aria-hidden", "true", 3, "title", "ngSwitch"], ["width", "1em", "height", "1em", "viewBox", "0 0 16 16", "class", "bi bi-arrows-angle-expand", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 4, "ngSwitchCase"], ["width", "1em", "height", "1em", "viewBox", "0 0 16 16", "class", "bi bi-arrows-angle-contract", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 4, "ngSwitchCase"], ["width", "1em", "height", "1em", "viewBox", "0 0 16 16", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 1, "bi", "bi-arrows-angle-expand"], ["fill-rule", "evenodd", "d", "M1.5 10.036a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5z"], ["fill-rule", "evenodd", "d", "M6.354 9.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0zm8.5-8.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0z"], ["fill-rule", "evenodd", "d", "M10.036 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 1 1-1 0V2h-3.5a.5.5 0 0 1-.5-.5z"], ["width", "1em", "height", "1em", "viewBox", "0 0 16 16", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 1, "bi", "bi-arrows-angle-contract"], ["fill-rule", "evenodd", "d", "M9.5 2.036a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5z"], ["fill-rule", "evenodd", "d", "M14.354 1.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 1 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0zm-7.5 7.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0z"], ["fill-rule", "evenodd", "d", "M2.036 9.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V10h-3.5a.5.5 0 0 1-.5-.5z"], [1, "dropdown-divider"], [1, "treeview-container"], [3, "config", "item", "template", "checkedChange", 4, "ngFor", "ngForOf"], [3, "config", "item", "template", "checkedChange"], [1, "treeview-text"]], template: function TreeviewComponent_Template(rf, ctx) { if (rf & 1) {
+    static ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: TreeviewComponent, selectors: [["ngx-treeview"]], inputs: { headerTemplate: "headerTemplate", itemTemplate: "itemTemplate", items: "items", config: "config" }, outputs: { selectedChange: "selectedChange", filterChange: "filterChange" }, features: [i0.ɵɵNgOnChangesFeature], decls: 9, vars: 5, consts: [["defaultItemTemplate", ""], ["defaultHeaderTemplate", ""], [1, "treeview-header"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"], [3, "ngSwitch"], ["class", "treeview-container", 3, "max-height", 4, "ngSwitchCase"], ["class", "treeview-text", 4, "ngSwitchCase"], [1, "form-inline", "row-item"], ["aria-hidden", "true", 3, "ngSwitch", "click", 4, "ngIf"], [1, "form-check"], ["type", "checkbox", 1, "form-check-input", 3, "ngModel", "disabled", "indeterminate", "ngModelChange"], [1, "form-check-label", 3, "click"], ["aria-hidden", "true", 3, "ngSwitch", "click"], ["width", "0.8rem", "height", "0.8rem", "viewBox", "0 0 16 16", "class", "bi bi-caret-right-fill", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 4, "ngSwitchCase"], ["width", "0.8rem", "height", "0.8rem", "viewBox", "0 0 16 16", "class", "bi bi-caret-down-fill", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 4, "ngSwitchCase"], ["width", "0.8rem", "height", "0.8rem", "viewBox", "0 0 16 16", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 1, "bi", "bi-caret-right-fill"], ["d", "M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"], ["width", "0.8rem", "height", "0.8rem", "viewBox", "0 0 16 16", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 1, "bi", "bi-caret-down-fill"], ["d", "M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"], ["class", "row row-filter", 4, "ngIf"], [4, "ngIf"], [1, "row", "row-filter"], [1, "col-12"], ["type", "text", 1, "form-control", 3, "placeholder", "ngModel", "ngModelChange"], ["class", "col-12", "style", "margin-top: 10px", 4, "ngIf"], [1, "col-12", 2, "margin-top", "10px"], ["id", "filterToggle", "type", "checkbox", 1, "form-check-input", 2, "margin-right", "7px", 3, "ngModel", "ngModelChange"], ["for", "filterToggle", 1, "form-check-label"], ["class", "row row-all", 4, "ngIf"], ["class", "dropdown-divider", 4, "ngIf"], [1, "row", "row-all"], ["class", "form-check form-check-inline", 4, "ngIf"], ["class", "float-right form-check-label", 3, "click", 4, "ngIf"], [1, "form-check", "form-check-inline"], ["type", "checkbox", 1, "form-check-input", 3, "ngModel", "indeterminate", "ngModelChange"], [1, "float-right", "form-check-label", 3, "click"], ["aria-hidden", "true", 3, "title", "ngSwitch"], ["width", "1em", "height", "1em", "viewBox", "0 0 16 16", "class", "bi bi-arrows-angle-expand", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 4, "ngSwitchCase"], ["width", "1em", "height", "1em", "viewBox", "0 0 16 16", "class", "bi bi-arrows-angle-contract", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 4, "ngSwitchCase"], ["width", "1em", "height", "1em", "viewBox", "0 0 16 16", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 1, "bi", "bi-arrows-angle-expand"], ["fill-rule", "evenodd", "d", "M1.5 10.036a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5z"], ["fill-rule", "evenodd", "d", "M6.354 9.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0zm8.5-8.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0z"], ["fill-rule", "evenodd", "d", "M10.036 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 1 1-1 0V2h-3.5a.5.5 0 0 1-.5-.5z"], ["width", "1em", "height", "1em", "viewBox", "0 0 16 16", "fill", "currentColor", "xmlns", "http://www.w3.org/2000/svg", 1, "bi", "bi-arrows-angle-contract"], ["fill-rule", "evenodd", "d", "M9.5 2.036a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5z"], ["fill-rule", "evenodd", "d", "M14.354 1.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 1 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0zm-7.5 7.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0z"], ["fill-rule", "evenodd", "d", "M2.036 9.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V10h-3.5a.5.5 0 0 1-.5-.5z"], [1, "dropdown-divider"], [1, "treeview-container"], [3, "config", "item", "template", "checkedChange", 4, "ngFor", "ngForOf"], [3, "config", "item", "template", "checkedChange"], [1, "treeview-text"]], template: function TreeviewComponent_Template(rf, ctx) { if (rf & 1) {
             i0.ɵɵtemplate(0, TreeviewComponent_ng_template_0_Template, 6, 5, "ng-template", null, 0, i0.ɵɵtemplateRefExtractor);
             i0.ɵɵtemplate(2, TreeviewComponent_ng_template_2_Template, 2, 2, "ng-template", null, 1, i0.ɵɵtemplateRefExtractor);
             i0.ɵɵelementStart(4, "div", 2);
@@ -1007,7 +1105,7 @@ class TreeviewComponent {
 }
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TreeviewComponent, [{
         type: Component,
-        args: [{ selector: 'ngx-treeview', template: "<ng-template #defaultItemTemplate let-item=\"item\" let-onCollapseExpand=\"onCollapseExpand\"\n  let-onCheckedChange=\"onCheckedChange\">\n  <div class=\"form-inline row-item\">\n    <i *ngIf=\"item.children\" (click)=\"onCollapseExpand()\" aria-hidden=\"true\" [ngSwitch]=\"item.collapsed\">\n      <svg *ngSwitchCase=\"true\" width=\"0.8rem\" height=\"0.8rem\" viewBox=\"0 0 16 16\" class=\"bi bi-caret-right-fill\"\n        fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path\n          d=\"M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z\" />\n      </svg>\n      <svg *ngSwitchCase=\"false\" width=\"0.8rem\" height=\"0.8rem\" viewBox=\"0 0 16 16\" class=\"bi bi-caret-down-fill\"\n        fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path\n          d=\"M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z\" />\n      </svg>\n    </i>\n    <div class=\"form-check\">\n      <input type=\"checkbox\" class=\"form-check-input\" [(ngModel)]=\"item.checked\" (ngModelChange)=\"onCheckedChange()\"\n        [disabled]=\"item.disabled\" [indeterminate]=\"item.indeterminate\" />\n      <label class=\"form-check-label\" (click)=\"item.checked = !item.checked; onCheckedChange()\">\n        {{item.text}}\n      </label>\n    </div>\n  </div>\n</ng-template>\n<ng-template #defaultHeaderTemplate let-config=\"config\" let-item=\"item\" let-onCollapseExpand=\"onCollapseExpand\"\n  let-onCheckedChange=\"onCheckedChange\" let-onFilterTextChange=\"onFilterTextChange\">\n  <div *ngIf=\"config.hasFilter\" class=\"row row-filter\">\n    <div class=\"col-12\">\n      <input class=\"form-control\" type=\"text\" [placeholder]=\"i18n.getFilterPlaceholder()\" [(ngModel)]=\"filterText\"\n        (ngModelChange)=\"onFilterTextChange($event)\" />\n    </div>\n  </div>\n  <div *ngIf=\"hasFilterItems\">\n    <div *ngIf=\"config.hasAllCheckBox || config.hasCollapseExpand\" class=\"row row-all\">\n      <div class=\"col-12\">\n        <div class=\"form-check form-check-inline\" *ngIf=\"config.hasAllCheckBox\">\n          <input type=\"checkbox\" class=\"form-check-input\" [(ngModel)]=\"item.checked\" (ngModelChange)=\"onCheckedChange()\"\n            [indeterminate]=\"item.indeterminate\" />\n          <label class=\"form-check-label\" (click)=\"item.checked = !item.checked; onCheckedChange()\">\n            {{i18n.getAllCheckboxText()}}\n          </label>\n        </div>\n        <label *ngIf=\"config.hasCollapseExpand\" class=\"float-right form-check-label\" (click)=\"onCollapseExpand()\">\n          <i [title]=\"i18n.getTooltipCollapseExpandText(item.collapsed)\" aria-hidden=\"true\" [ngSwitch]=\"item.collapsed\">\n            <svg *ngSwitchCase=\"true\" width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-arrows-angle-expand\"\n              fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n              <path fill-rule=\"evenodd\"\n                d=\"M1.5 10.036a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5z\" />\n              <path fill-rule=\"evenodd\"\n                d=\"M6.354 9.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0zm8.5-8.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0z\" />\n              <path fill-rule=\"evenodd\"\n                d=\"M10.036 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 1 1-1 0V2h-3.5a.5.5 0 0 1-.5-.5z\" />\n            </svg>\n            <svg *ngSwitchCase=\"false\" width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-arrows-angle-contract\"\n              fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n              <path fill-rule=\"evenodd\"\n                d=\"M9.5 2.036a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5z\" />\n              <path fill-rule=\"evenodd\"\n                d=\"M14.354 1.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 1 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0zm-7.5 7.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0z\" />\n              <path fill-rule=\"evenodd\"\n                d=\"M2.036 9.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V10h-3.5a.5.5 0 0 1-.5-.5z\" />\n            </svg>\n          </i>\n        </label>\n      </div>\n    </div>\n    <div *ngIf=\"config.hasDivider\" class=\"dropdown-divider\"></div>\n  </div>\n</ng-template>\n<div class=\"treeview-header\">\n  <ng-template [ngTemplateOutlet]=\"headerTemplate || defaultHeaderTemplate\"\n    [ngTemplateOutletContext]=\"headerTemplateContext\">\n  </ng-template>\n</div>\n<div [ngSwitch]=\"hasFilterItems\">\n  <div *ngSwitchCase=\"true\" class=\"treeview-container\" [style.max-height.px]=\"maxHeight\">\n    <ngx-treeview-item *ngFor=\"let item of filterItems\" [config]=\"config\" [item]=\"item\"\n      [template]=\"itemTemplate || defaultItemTemplate\" (checkedChange)=\"onItemCheckedChange(item, $event)\">\n    </ngx-treeview-item>\n  </div>\n  <div *ngSwitchCase=\"false\" class=\"treeview-text\">\n    {{i18n.getFilterNoItemsFoundText()}}\n  </div>\n</div>\n", styles: [":host .treeview-header .row-filter{margin-bottom:.5rem}:host .treeview-header .row-all .bi{cursor:pointer}:host .treeview-container .row-item{margin-bottom:.3rem;flex-wrap:nowrap}:host .treeview-container .row-item .bi{cursor:pointer;margin-right:.3rem}.treeview-container{overflow-y:auto;padding-right:.3rem}.treeview-text{padding:.3rem 0;white-space:nowrap}\n"] }]
+        args: [{ selector: 'ngx-treeview', template: "<ng-template #defaultItemTemplate let-item=\"item\" let-onCollapseExpand=\"onCollapseExpand\"\n  let-onCheckedChange=\"onCheckedChange\">\n  <div class=\"form-inline row-item\">\n    <i *ngIf=\"item.children\" (click)=\"onCollapseExpand()\" aria-hidden=\"true\" [ngSwitch]=\"item.collapsed\">\n      <svg *ngSwitchCase=\"true\" width=\"0.8rem\" height=\"0.8rem\" viewBox=\"0 0 16 16\" class=\"bi bi-caret-right-fill\"\n        fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path\n          d=\"M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z\" />\n      </svg>\n      <svg *ngSwitchCase=\"false\" width=\"0.8rem\" height=\"0.8rem\" viewBox=\"0 0 16 16\" class=\"bi bi-caret-down-fill\"\n        fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path\n          d=\"M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z\" />\n      </svg>\n    </i>\n    <div class=\"form-check\">\n      <input type=\"checkbox\" class=\"form-check-input\" [(ngModel)]=\"item.checked\" (ngModelChange)=\"onCheckedChange()\"\n        [disabled]=\"item.disabled\" [indeterminate]=\"item.indeterminate\" />\n      <label class=\"form-check-label\" (click)=\"item.checked = !item.checked; onCheckedChange()\">\n        {{item.text}}\n      </label>\n    </div>\n  </div>\n</ng-template>\n<ng-template #defaultHeaderTemplate let-config=\"config\" let-item=\"item\" let-onCollapseExpand=\"onCollapseExpand\"\n  let-onCheckedChange=\"onCheckedChange\" let-onFilterTextChange=\"onFilterTextChange\" let-onFilterShowHiddenChange=\"onFilterShowHiddenChange\">\n  <div *ngIf=\"config.hasFilter\" class=\"row row-filter\">\n    <div class=\"col-12\">\n      <input class=\"form-control\" type=\"text\" [placeholder]=\"i18n.getFilterPlaceholder()\" [(ngModel)]=\"filterText\"\n        (ngModelChange)=\"onFilterTextChange($event)\" />\n    </div>\n    <div class=\"col-12\" style=\"margin-top: 10px\" *ngIf=\"config.filterHidden\">\n      <input class=\"form-check-input\" id=\"filterToggle\" style=\"margin-right: 7px;\" type=\"checkbox\" [(ngModel)]=\"showHidden\"\n             (ngModelChange)=\"onFilterShowHiddenChange($event)\" />\n      <label class=\"form-check-label\" for=\"filterToggle\">Show Hidden</label>\n    </div>\n  </div>\n  <div *ngIf=\"hasFilterItems\">\n    <div *ngIf=\"config.hasAllCheckBox || config.hasCollapseExpand\" class=\"row row-all\">\n      <div class=\"col-12\">\n        <div class=\"form-check form-check-inline\" *ngIf=\"config.hasAllCheckBox\">\n          <input type=\"checkbox\" class=\"form-check-input\" [(ngModel)]=\"item.checked\" (ngModelChange)=\"onCheckedChange()\"\n            [indeterminate]=\"item.indeterminate\" />\n          <label class=\"form-check-label\" (click)=\"item.checked = !item.checked; onCheckedChange()\">\n            {{i18n.getAllCheckboxText()}}\n          </label>\n        </div>\n        <label *ngIf=\"config.hasCollapseExpand\" class=\"float-right form-check-label\" (click)=\"onCollapseExpand()\">\n          <i [title]=\"i18n.getTooltipCollapseExpandText(item.collapsed)\" aria-hidden=\"true\" [ngSwitch]=\"item.collapsed\">\n            <svg *ngSwitchCase=\"true\" width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-arrows-angle-expand\"\n              fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n              <path fill-rule=\"evenodd\"\n                d=\"M1.5 10.036a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5z\" />\n              <path fill-rule=\"evenodd\"\n                d=\"M6.354 9.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0zm8.5-8.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0z\" />\n              <path fill-rule=\"evenodd\"\n                d=\"M10.036 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 1 1-1 0V2h-3.5a.5.5 0 0 1-.5-.5z\" />\n            </svg>\n            <svg *ngSwitchCase=\"false\" width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-arrows-angle-contract\"\n              fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n              <path fill-rule=\"evenodd\"\n                d=\"M9.5 2.036a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5z\" />\n              <path fill-rule=\"evenodd\"\n                d=\"M14.354 1.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 1 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0zm-7.5 7.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 .708 0z\" />\n              <path fill-rule=\"evenodd\"\n                d=\"M2.036 9.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V10h-3.5a.5.5 0 0 1-.5-.5z\" />\n            </svg>\n          </i>\n        </label>\n      </div>\n    </div>\n    <div *ngIf=\"config.hasDivider\" class=\"dropdown-divider\"></div>\n  </div>\n</ng-template>\n<div class=\"treeview-header\">\n  <ng-template [ngTemplateOutlet]=\"headerTemplate || defaultHeaderTemplate\"\n    [ngTemplateOutletContext]=\"headerTemplateContext\">\n  </ng-template>\n</div>\n<div [ngSwitch]=\"hasFilterItems\">\n  <div *ngSwitchCase=\"true\" class=\"treeview-container\" [style.max-height.px]=\"maxHeight\">\n    <ngx-treeview-item *ngFor=\"let item of filterItems\" [config]=\"config\" [item]=\"item\"\n      [template]=\"itemTemplate || defaultItemTemplate\" (checkedChange)=\"onItemCheckedChange(item, $event)\">\n    </ngx-treeview-item>\n  </div>\n  <div *ngSwitchCase=\"false\" class=\"treeview-text\">\n    {{i18n.getFilterNoItemsFoundText()}}\n  </div>\n</div>\n", styles: [":host .treeview-header .row-filter{margin-bottom:.5rem}:host .treeview-header .row-all .bi{cursor:pointer}:host .treeview-container .row-item{margin-bottom:.3rem;flex-wrap:nowrap}:host .treeview-container .row-item .bi{cursor:pointer;margin-right:.3rem}.treeview-container{overflow-y:auto;padding-right:.3rem}.treeview-text{padding:.3rem 0;white-space:nowrap}\n"] }]
     }], function () { return [{ type: TreeviewI18n }, { type: TreeviewConfig }, { type: TreeviewEventParser }]; }, { headerTemplate: [{
             type: Input
         }], itemTemplate: [{

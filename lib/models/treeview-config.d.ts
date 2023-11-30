@@ -4,6 +4,7 @@ export declare class TreeviewConfig {
     hasFilter: boolean;
     hasCollapseExpand: boolean;
     decoupleChildFromParent: boolean;
+    filterHidden: boolean;
     maxHeight: number;
     get hasDivider(): boolean;
     static create(fields?: {
@@ -11,6 +12,7 @@ export declare class TreeviewConfig {
         hasFilter?: boolean;
         hasCollapseExpand?: boolean;
         decoupleChildFromParent?: boolean;
+        filterHidden?: boolean;
         maxHeight?: number;
     }): TreeviewConfig;
     static ɵfac: i0.ɵɵFactoryDeclaration<TreeviewConfig, never>;
